@@ -26,6 +26,36 @@ exports.rfc1867 =
     ]
   };
 
+exports.rfc1867_2_files =
+  { boundary: 'AaB03x',
+    raw:
+      '--AaB03x\r\n'+
+      'content-disposition: form-data; name="pic1"; filename="file1.txt"\r\n'+
+      'Content-Type: text/plain\r\n'+
+      '\r\n'+
+      '... contents of file1.txt ...\r\r\n'+
+      '--AaB03x\r\n'+
+      'content-disposition: form-data; name="pic2"; filename="file2.txt"\r\n'+
+      'Content-Type: text/plain\r\n'+
+      '\r\n'+
+      '... contents of file2.txt ...\r\r\n'+
+      '--AaB03x--\r\n',
+    parts:
+    [ { headers: {
+          'content-disposition': 'form-data; name="pic1"; filename="file1.txt"',
+          'Content-Type': 'text/plain',
+        },
+        data: '... contents of file1.txt ...\r',
+      },
+      { headers: {
+          'content-disposition': 'form-data; name="pic2"; filename="file2.txt"',
+          'Content-Type': 'text/plain',
+        },
+        data: '... contents of file2.txt ...\r',
+      }
+    ]
+  };
+
 exports['noTrailing\r\n'] =
   { boundary: 'AaB03x',
     raw:
